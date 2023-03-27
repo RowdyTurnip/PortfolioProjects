@@ -1,0 +1,39 @@
+--Checking Columns
+Select *
+from project_3..villagers
+
+Select Distinct Name
+From Project_3..villagers
+
+
+--Ordering Name Alphabetically
+select *
+from project_3..acnh_villager_data
+Order by name Asc
+
+--Merging tables such that we only have name, species, gender, personality, rank, and tier
+select A.Name, A.Species, A.Gender, A.Personality, B.tier, B.rank
+from project_3..villagers A
+join project_3..acnh_villager_data B
+	on A.Name = B.name
+Order by rank Asc
+
+
+select species, personality, count(*)
+from project_3..villagers A
+join project_3..acnh_villager_data B
+	on A.Name = B.name
+Group by cube (species, personality);
+
+
+select Personality, Gender, count(*)
+from project_3..villagers A
+join project_3..acnh_villager_data B
+	on A.Name = B.name
+Group by cube(personality, gender);
+
+select Personality, Gender, AVG(tier) as avg_tier
+from project_3..villagers A
+join project_3..acnh_villager_data B
+	on A.Name = B.name
+Group by cube(personality, gend
